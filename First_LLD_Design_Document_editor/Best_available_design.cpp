@@ -51,15 +51,39 @@ public:
         documentelement.push_back(element);
     }
 
-    string render()
+    vector<DocumentElement *> getelement()
     {
-        string result = "";
-        for (auto ele : documentelement)
+        vector<DocumentElement *> ElementVector;
+        if (ElementVector.empty())
         {
-            result += ele->render();
+            for (auto it : documentelement)
+            {
+                ElementVector.push_back(it);
+            }
         }
+        return ElementVector;
+    }
+};
 
-        return result;
+class DocumentRender
+{
+private:
+    Document *doc;
+    string RederedDocument;
+
+public:
+    DocumentRender(Document *doc)
+    {
+        this->doc = doc;
+    }
+    string Documentrender()
+    {
+        vector<DocumentElement *> result = doc->getelement();
+        for (auto it : result)
+        {
+            RederedDocument += it->render();
+        }
+        return RederedDocument;
     }
 };
 
@@ -72,7 +96,7 @@ public:
 class Savetofile : public persistance
 {
 public:
-     void save(string data)
+    void save(string data)
     {
         ofstream file("Document.txt");
         if (file.is_open())
@@ -91,50 +115,43 @@ public:
 class SavetoDB : public persistance
 {
 public:
-     void save(string Data)
+    void save(string Data)
     {
         // save to DB logic..
     }
 };
 
-class DocumentEditor{
+class DocumentEditor
+{
 private:
     Document *doc;
-    persistance *per;
-    string RenderedDocument;
+
 public:
-    DocumentEditor(Document *doc,persistance *per){
-        this->doc=doc;
-        this->per=per;
+    DocumentEditor(Document *doc)
+    {
+        this->doc = doc;
     }
-   
-    void Addtext(string Text){
+
+    void Addtext(string Text)
+    {
         doc->addelement(new TextElement(Text));
     }
 
-    void AddImage(string imagePath){
+    void AddImage(string imagePath)
+    {
         doc->addelement(new ImageElement(imagePath));
-    }
-
-    string renderdoc(){
-         if(RenderedDocument.empty()){
-             RenderedDocument=doc->render();
-         }
-         return RenderedDocument;
-    }
-    void save(){
-        per->save(renderdoc());
     }
 };
 
-int main(){
-    Document *document=new Document();
-    persistance *Persistance=new Savetofile();
+int main()
+{
+    Document *doc = new Document();
+    persistance *per = new Savetofile();
+    DocumentRender *dr = new DocumentRender(doc);
+    DocumentEditor *de = new DocumentEditor(doc);
 
-    DocumentEditor *de=new DocumentEditor(document,Persistance);
-
-    de->Addtext("Hello I am back\n");
-    de->AddImage("Image.jpg");
-    de->renderdoc();
-    de->save();
+    de->Addtext("Hello I am Back.\n");
+    de->AddImage("Image.img");
+    string Text = dr->Documentrender();
+    per->save(Text);
 }
