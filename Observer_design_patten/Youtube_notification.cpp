@@ -61,7 +61,7 @@ public:
     {
         latest_Video = title;
         cout << "\n"
-             << name << "uploaded \"" << title << "\"\n";
+        << name << "uploaded \"" << title << "\"\n";
         NotifySubscriber();
     }
     string getVideo()
@@ -85,16 +85,16 @@ public:
 
     void update()
     {
-        string s = c->getVideo();
-        cout << s;
+        string s = "hey"+name+"\n"+this->c->getVideo();
+        cout<<s;
     }
 };
 
 int main()
 {
     channel *c = new channel("Code");
-    Subscriber *s1 = new Subscriber(c, "s1");
-    Subscriber *s2 = new Subscriber(c, "s2");
+    Subscriber *s1 = new Subscriber(c, "tarun");
+    Subscriber *s2 = new Subscriber(c, "varun");
     c->subscribe(s1);
     c->subscribe(s2);
     c->uploadVideo("array to string 1st");
