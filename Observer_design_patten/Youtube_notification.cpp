@@ -97,9 +97,9 @@ int main()
     Subscriber *s2 = new Subscriber(c, "s2");
     c->subscribe(s1);
     c->subscribe(s2);
-    c->uploadVideo("array to string 1");
+    c->uploadVideo("array to string 1st");
     c->unsubscribe(s2);
-    c->uploadVideo("array to string 2");
+    c->uploadVideo("array to string 2nd");
 
     return 0;
 }
