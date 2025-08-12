@@ -92,7 +92,7 @@ public:
 
 int main()
 {
-    channel *c = new channel("Codeforce");
+    channel *c = new channel("Codeforceok");
     Subscriber *s1 = new Subscriber(c, "s1");
     Subscriber *s2 = new Subscriber(c, "s2");
     c->subscribe(s1);
