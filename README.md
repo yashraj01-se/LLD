@@ -8,42 +8,6 @@ The repository is designed to evolve continuously as more LLD problems, patterns
 
 ---
 
-## Repository Structure
-
-LLD/
-│
-├── OOPS/
-│ ├── Encapsulation
-│ ├── Inheritance
-│ ├── Polymorphism
-│ └── Abstraction
-│
-├── SOLID/
-│ ├── Single Responsibility Principle
-│ ├── Open-Closed Principle
-│ ├── Liskov Substitution Principle
-│ ├── Interface Segregation Principle
-│ └── Dependency Inversion Principle
-│
-├── Design Patterns/
-│ ├── Singleton_design_pattern
-│ ├── Factory_design_pattern
-│ ├── Strategy_design_pattern
-│ ├── Observer_design_pattern
-│ └── Decorator_pattern
-│
-├── First_LLD_Design_Document_editor/
-│ └── End-to-end low-level design implementation
-│
-└── .vscode/
-
-yaml
-Copy code
-
-> Folder names reflect the chronological and conceptual learning path followed while studying LLD.
-
----
-
 ## Covered Topics
 
 ### 1. Object-Oriented Programming (OOPS)
